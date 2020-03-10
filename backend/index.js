@@ -5,13 +5,13 @@ const mysql = require("mysql");
 const app = express();
 
 const selectAllUsers = "SELECT * from users";
-const selectAllFeed = "SELECT * from feed";
+const selectAllFeed = "SELECT * from racers";
 
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "socialnetwork"
+  database: "f1"
 });
 
 connection.connect(err => {
@@ -24,7 +24,7 @@ app.use(cors());
 
 app.get("/", (req, res) => {
   //Standard url: localhost:4000
-  res.send("go to /users to see my users or to /feed to see all feeds");
+  res.send("go to /users to see my users or to /racers to see all racers");
 });
 
 app.get("/users", (req, res) => {
@@ -41,9 +41,9 @@ app.get("/users", (req, res) => {
   });
 });
 
-app.get("/feed", (req, res) => {
-  // url: localhost:4000/feed
-  connection.query(selectAllFeed, (err, results) => {
+app.get("/racers", (req, res) => {
+  // url: localhost:4000/racers
+  connection.query(selectAllRacers, (err, results) => {
     //Abfrage starten
     if (err) {
       return err;

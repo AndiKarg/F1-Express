@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import Userlist from "./components/Userlist";
-import Feedlist from "./components/Feedlist";
+import "./css/App.css";
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <>
         <Userlist></Userlist>
-        <Feedlist></Feedlist>
       </>
     );
   }
 }
-
-export default App;
