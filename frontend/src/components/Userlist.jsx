@@ -2,23 +2,18 @@ import React, { Component } from "react";
 
 export default class App extends Component {
   state = {
-    login: false,
     loading: true,
     users: []
   };
 
   componentDidMount() {
-    fetch("http://localhost:4000/users")
+    fetch("http://192.168.49.79:4000/users")
       .then(response => response.json())
       .then(response => {
         console.log("DATA:", response.data);
         this.setState({ loading: false, users: response.data });
       });
   }
-
-  handleLogin = () => {
-    this.setState({ login: true });
-  };
 
   render() {
     const users = this.state.users;
@@ -30,16 +25,10 @@ export default class App extends Component {
         <div className="Userlist">
           <h3>Userlist!</h3>
           <ul>
-            {login ? (
-              loading ? (
-                <h3>Loading...</h3>
-              ) : (
-                users.map(u => <li key={u.user_id}>{u.user_name}</li>)
-              )
+            {loading ? (
+              <h3>Loading...</h3>
             ) : (
-              <button type="button" onClick={this.handleLogin}>
-                Einloggen
-              </button>
+              users.map(u => <li key={u.user_id}>{u.user_name}</li>)
             )}
           </ul>
         </div>
